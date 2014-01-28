@@ -1,9 +1,12 @@
 def to_hex(r, g, b):
-	if r%16==0 and g%16==0 and b%16==0:
-		if r==g and r==b:
-			return '#%01x' % (r/16)
-		return '#%01x%01x%01x' % (r/16, g/16, b/16)
-	return '#%02x%02x%02x' % (r, g, b)
+	ir = 0 if r<0 else 255 if r>255 else int(r)
+	ig = 0 if r<0 else 255 if r>255 else int(g)
+	ib = 0 if r<0 else 255 if r>255 else int(b)
+	if ir%16==0 and ig%16==0 and ib%16==0:
+		if ir==ig and ir==ib:
+			return '#%01x' % (ir/16)
+		return '#%01x%01x%01x' % (ir/16, ig/16, ib/16)
+	return '#%02x%02x%02x' % (ir, ig, ib)
 
 def new_bitmap(w, h, col=""):
 	return [[col for j in range(w)] for i in range(h)]
@@ -17,8 +20,12 @@ def rect_on(bitmap, x, y, w, h, col=""):
 	for i in range(y, y+h):
 		for j in range(x, x+w):
 			pixel_on(bitmap, j, i, col)
- 
+
 def line_on(bitmap, x1, y1, x2, y2, col="", width=1):	# Bresenham's
+	x1 = int(x1)
+	y1 = int(y1)
+	x2 = int(x2)
+	y2 = int(y2)
 	points = []
 	step = abs(y2-y1) > abs(x2-x1)
 	if step:
@@ -58,8 +65,12 @@ def line_on(bitmap, x1, y1, x2, y2, col="", width=1):	# Bresenham's
 		else:
 			rect_on(bitmap, x-width/2, y-width/2, width, width, col)
 
-
-def circle_on(bitmap, cx, cy, r, col="", width=1):	# Bresenham's
+# bug - doesn't work with width=1 
+def circle_on(bitmap, cx, cy, r, col="", width=2):	# Bresenham's
+	cx = int(cx)
+	cy = int(cy)
+	r = int(r)
+	width = int(width)
 	def circle_points_on(bitmap, x, y, cx, cy, col):
 		pixel_on(bitmap, cx + x, cy + y, col)
 		pixel_on(bitmap, cx - x, cy - y, col)  
