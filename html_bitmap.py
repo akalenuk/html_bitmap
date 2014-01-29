@@ -12,6 +12,8 @@ def new_bitmap(w, h, col=""):
 	return [[col for j in range(w)] for i in range(h)]
 
 def pixel_on(bitmap, x, y, col=""):
+	x = int(x)
+	y = int(y)
 	if y < len(bitmap):
 		if x < len(bitmap[y]):
 			bitmap[y][x] = col
