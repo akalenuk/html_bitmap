@@ -14,8 +14,8 @@ def new_bitmap(w, h, col=""):
 def pixel_on(bitmap, x, y, col=""):
 	x = int(x)
 	y = int(y)
-	if y < len(bitmap):
-		if x < len(bitmap[y]):
+	if y < len(bitmap) and y >= 0:
+		if x < len(bitmap[y]) and x >= 0:
 			bitmap[y][x] = col
 			
 def rect_on(bitmap, x, y, w, h, col=""):
