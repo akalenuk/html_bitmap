@@ -1,3 +1,22 @@
+#!/usr/bin/python
+#
+# Copyright 2014 Alexandr Kalenuk.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+# mailto: akalenuk@gmail.com
+
+
 def to_hex(r, g, b):
 	ir = 0 if r<0 else 255 if r>255 else int(r)
 	ig = 0 if r<0 else 255 if r>255 else int(g)
