@@ -6,8 +6,8 @@ def to_hex(r, g, b):
 	ib = 0 if r<0 else 255 if r>255 else int(b)
 	if ir%16==0 and ig%16==0 and ib%16==0:
 		if ir==ig and ir==ib:
-			return '#%01x' % (ir/16)
-		return '#%01x%01x%01x' % (ir/16, ig/16, ib/16)
+			return '#%01x' % int(ir/16)
+		return '#%01x%01x%01x' % (int(ir/16), int(ig/16), int(ib/16))
 	return '#%02x%02x%02x' % (ir, ig, ib)
 
 def new_bitmap(w, h, col=""):
@@ -19,10 +19,10 @@ def pixel_on(bitmap, x, y, col=""):
 	if y < len(bitmap) and y >= 0:
 		if x < len(bitmap[y]) and x >= 0:
 			bitmap[y][x] = col
-			
+
 def rect_on(bitmap, x, y, w, h, col=""):
-	for i in range(y, y+h):
-		for j in range(x, x+w):
+	for i in range(int(y), int(y+h)):
+		for j in range(int(x), int(x+w)):
 			pixel_on(bitmap, j, i, col)
 
 def line_on(bitmap, x1, y1, x2, y2, col="", width=1):	# Bresenham's
@@ -80,7 +80,7 @@ def circle_on(bitmap, cx, cy, r, col="", width=2):	# Bresenham's
 		pixel_on(bitmap, cx - x, cy - y, col)  
 		pixel_on(bitmap, cx + x, cy - y, col)
 		pixel_on(bitmap, cx - x, cy + y, col)
-	        if x != y:
+		if x != y:
 			pixel_on(bitmap, cx + y, cy + x, col)
 			pixel_on(bitmap, cx - y, cy - x, col)
 			pixel_on(bitmap, cx + y, cy - x, col)
@@ -99,7 +99,7 @@ def circle_on(bitmap, cx, cy, r, col="", width=2):	# Bresenham's
 
 	for y in range(yin, yout):
 		circle_points_on(bitmap, x, y, cx, cy, col)
-            
+
 	while yout > x:
 		if din < 0:
 			din = din + deltaEin
@@ -139,7 +139,7 @@ def to_html(bitmap):
 				if wj < 0 or hj < 0 or cj != c:
 					dj = jj - j
 					break
-			
+
 			di = H - i
 			for ii in range(i+1, H):
 				for jj in range(j, j + dj):
@@ -155,7 +155,7 @@ def to_html(bitmap):
 					for jj in range(j, j+dj):
 						opt_bitmap[ii][jj] = (c, -1, -1)
 			opt_bitmap[i][j] = (c, dj, di)
- 
+
 
 	ret = "<table border=0 cellspacing=0 cellpadding=0 width=" + str(W) + ">\n"
 	ret += "<tr height=0>"
@@ -204,7 +204,7 @@ if __name__ == "__main__":
 		g = int(random()*255)
 		b = int(random()*255)
 		rect_on(bitmap, x, y, 100, 100, to_hex(r, g, b))
-	
+
 	for i in range(20):
 		x = int(random()*512)
 		y = int(random()*384)
@@ -215,8 +215,7 @@ if __name__ == "__main__":
 		b = int(random()*255)
 		w = int(random()*5)+1
 		line_on(bitmap, x, y, x2, y2, to_hex(r, g, b), w)
-		
-		
+
 	for i in range(20):
 		x = int(random()*512)
 		y = int(random()*384)
@@ -227,4 +226,4 @@ if __name__ == "__main__":
 		w = int(random()*5)+1
 		circle_on(bitmap, x, y, ra, to_hex(r, g, b), w)
 
-	print to_html(bitmap)
+	print( to_html(bitmap) )
