@@ -47,17 +47,17 @@ def pol_roots(pol):
 	if dp_roots == []:
 		return find_single_root(pol)
 	return pol_root_l(pol, dp_roots)
-	
+
 def pol_root_l(pol, xs):
-	on_inf_x1 = root_a(lambda x: px(pol, x), xs[0], -1.0)	# root on (-inf, x0)
+	on_inf_x1 = root_a(lambda x: px(pol, x), xs[0], -1.0) # root on (-inf, x0)
 	return on_inf_x1 + pol_root_r(pol, xs)
-	
+
 def pol_root_r(pol, xs):
 	if len( xs ) == 1:
-		return root_a(lambda x: px(pol, x), xs[0], 1.0)	# root in (xn, inf)
-	on_a_b = root_ab(lambda x: px(pol, x), xs[0], xs[1])	# root in (xi, xi+1)
+		return root_a(lambda x: px(pol, x), xs[0], 1.0) # root in (xn, inf)
+	on_a_b = root_ab(lambda x: px(pol, x), xs[0], xs[1]) # root in (xi, xi+1)
 	return on_a_b + pol_root_r(pol, xs[1:])
-	
+
 
 if __name__ == "__main__":
 	pol1 = [-2.0, 0.0, 1.0]
@@ -86,26 +86,24 @@ if __name__ == "__main__":
 		line_on(bmp, x_to_sx(0.03), y_to_sy(1), x_to_sx(-0.03), y_to_sy(1), col = '#000', width = 1)
 		line_on(bmp, x_to_sx(1), y_to_sy(0.03), x_to_sx(1), y_to_sy(-0.03), col = '#000', width = 1)
 
-	
 	orths_on( bmp1 )
 	orths_on( bmp2 )
 	orths_on( bmp3 )
-	
+
 	for i in range(1,500):
 		line_on(bmp1, i, y_to_sy( px(pol1, sx_to_x(i)) ), i-1, y_to_sy( px(pol1, sx_to_x(i-1)) ), '#700')
 		line_on(bmp2, i, y_to_sy( px(pol2, sx_to_x(i)) ), i-1, y_to_sy( px(pol2, sx_to_x(i-1)) ), '#060')
 		line_on(bmp3, i, y_to_sy( px(pol3, sx_to_x(i)) ), i-1, y_to_sy( px(pol3, sx_to_x(i-1)) ), '#007')
-	
-	print to_html( bmp1 )
-	print pol1, pol_roots( pol1 )
-	print '<br>'
-	print '<br>'
-	print to_html( bmp2 )
-	print pol2, pol_roots( pol2 )
-	print '<br>'
-	print '<br>'
-	print to_html( bmp3 )
-	print pol3, pol_roots( pol3 )
-	print '<br>'
-	print '<br>'
-	
+
+	print( to_html( bmp1 ) )
+	print( pol1, pol_roots( pol1 ) )
+	print( '<br>' )
+	print( '<br>' )
+	print( to_html( bmp2 ) )
+	print( pol2, pol_roots( pol2 ) )
+	print( '<br>' )
+	print( '<br>' )
+	print( to_html( bmp3 ) )
+	print( pol3, pol_roots( pol3 ) )
+	print( '<br>' )
+	print( '<br>' )
