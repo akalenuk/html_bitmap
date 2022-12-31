@@ -1,7 +1,9 @@
 html_bitmap
 ===========
 
-This module lets you draw some primitive on pythons jagged lists and then write it to the big HTML table.
+This module lets you draw bitmaps as Python native lists and save them as HTML tables. I do functions plots and diagrams with it (see use_case_x.py). The module has no dependencies and works in pure Python. Current version is "modernized" to work in Python 3.x but there is a Python 2.x branch too.
+
+This plot-in-HTML thing comes in handy if, like me, you enjoy working on obscure and underpowered machines with little or broken support for 3d-part dependencies such as matlplotlib.
 
 All the capabilities are:
 
